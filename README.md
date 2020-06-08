@@ -1,3 +1,3 @@
 # Etherium-Analysis
-Analysis of Etherum contracts, transactions, gas, scams and scammers' graph traversal using spark and graphframes
+Analysis of Etherum contracts, transactions, gas, scams and scammers' graph using spark and graphframes
 
