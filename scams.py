@@ -53,12 +53,3 @@ for rec in most_lucrative_cat:
 scmamming = joined_RDD.filter(is_scamming).map(lambda x: (x[1][0][1], x[1][0][0])).reduceByKey(lambda a,b: a+b).sortByKey(ascending=True).saveAsTextFile('scamming') # (time, total_val)
 phishing = joined_RDD.filter(is_phishing).map(lambda x: (x[1][0][1], x[1][0][0])).reduceByKey(lambda a,b: a+b).sortByKey(ascending=True).saveAsTextFile('phishing')
 fICO = joined_RDD.filter(is_fICO).map(lambda x: (x[1][0][1], x[1][0][0])).reduceByKey(lambda a,b: a+b).sortByKey(ascending=True).saveAsTextFile('fICO')
-
-# correlation with status
-#top_scams = joined_RDD.reduceByKey(lambda ((v1, t1), (c1, s1)), ((v2, t2), (c2, s2)): (1, (('{}-{}'.format(v1, v2), '{}_{}'.format(t1, t2)), (c1, s1)))).collect()
-#.takeOrdered(10, key = lambda x: -x[1][0])
-#.map(lambda x: (x[1][0][1], (x[1][1][0][0], x[1][0][0], x[1][1][1]))) # (time, (cat, val, status))
-#.takeOrdered(10, key = lambda x: -x[2])
-#float(v1) + float(v2)
-#for rec in top_scams:
-#    print(rec)
