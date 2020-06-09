@@ -5,7 +5,7 @@ Analysis of Etherum contracts, transactions, gas, scams and scammers' graph usin
 The dataset was collected using the dumps uploaded to a repository on [BigQuery](https://bigquery.cloud.google.com/dataset/bigquery-public-data:crypto_ethereum?pli=1). A subset of this data , including contracts and transactions, was then uploaded to HDFS at `/data/ethereum`.
 Also, a set of identified scams run on the Ethereum network were collected using [etherscamDB](https://etherscamdb.info/scams) and uploaded to HDFS at `/data/ethereum/scams.json`.
 ### Dataset Schema
-* Blocks
+* __Blocks__
 ```
 +-------+--------------------+--------------------+----------------+-----+---------+--------+----------+-----------------+
 | number|                hash|               miner|      difficulty| size|gas_limit|gas_used| timestamp|transaction_count|
@@ -14,7 +14,7 @@ Also, a set of identified scams run on the Ethereum network were collected using
 |4776200|0x1fb1d4a2f5d2a61...|0xea674fdde714fd9...|1765656009037448|15532|  8000029| 4385719|1513937547|              101|
 |4776201|0xe633b6dca01d085...|0x829bd824b016326...|1765656009070216|14033|  8000000| 7992282|1513937564|               99|
 ```
-* Transactions
+* __Transactions__
 ```
 +------------+--------------------+--------------------+-------------------+------+-----------+---------------+
 |block_number|        from_address|          to_address|              value|   gas|  gas_price|block_timestamp|
@@ -23,7 +23,7 @@ Also, a set of identified scams run on the Ethereum network were collected using
 |     6638809|0xb43febf2e6c49f3...|0x9eec65e5b998db6...|                  0| 60000| 5000000000|     1541290680|
 |     6638809|0x564860b05cab055...|0x73850f079ceaba2...|                  0|200200| 5000000000|     1541290680|
 ```
-* Contracts
+* __Contracts__
 ```
 +--------------------+--------+---------+------------+--------------------+
 |             address|is_erc20|is_erc721|block_number|     block_timestamp|
@@ -33,7 +33,7 @@ Also, a set of identified scams run on the Ethereum network were collected using
 |0xc3649f1e59705f2...|   false|    false|     8621325|2019-09-26 00:29:...|
 
 ```
-* Scams
+* __Scams__
 ```
 0x11c058c3efbf53939fb6872b09a2b5cf2410a1e2c3f3c867664e43a626d878c0: {
     id: 81,
@@ -59,15 +59,18 @@ Also, a set of identified scams run on the Ethereum network were collected using
 ```
 ## Analysis & Results
 
-### Total number of transactions
+### 1. Total number of transactions
 In `number_of_transactions.py`the total number of transactions are aggregated for each month included in the dataset.
+
 __*Results:*__
 
 ![number of transactions vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/transactions_time.png)
 
-### Top 10 most popular services
+### 2. Top 10 most popular services
 In `top10_addresses.py` the top 10 services with the highest amounts of Ethereum received for smart contracts are yielded.
+
 __*Results:*__
+
 rank | address | total Ether received
 -----|---------|------------
 1 | 0xaa1a6e3e6ef20068f7f8d8c835d2d22fd5116444 | 8.415510081e+25
@@ -81,18 +84,21 @@ rank | address | total Ether received
 9 | 0xabbb6bebfa05aa13e908eaa492bd7a8343760477 | 1.17064571779e+25
 10 | 0x341e790174e3a4d35b65fdc067b6b5634a61caea | 8.37900075192e+24
 
-### Scams
-#### Most lucritive forms of scams
+### 3. Scams
+#### 3.1. Most lucritive forms of scams
 In `scams.py`, the types of scam making the most Ether are yielded.
+
 __*Results:*__
+
 rank | most lucrative scam (category) | total Ether profited
 -----|--------------------------------|------------
 1 | Scamming | 3.901380697597355e+22
 2 | Phishing | 3.1319012152715346e+22
 3 | Fake ICO | 1.35645756688963e+21
 
-#### How different scams changed with time
+#### 3.2. How different scams changed with time
 In `scams.py` the total sum of Ether made off of each scam category is calculated for each month included in the dataset.
+
 __*Results:*__
 
 ![scams vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/scams_time.png)
@@ -100,23 +106,26 @@ __*Results:*__
 * In September of 2017, fake ICO was the most profitable form of scam.
 * In September of 2018, scamming attacks were the most profitable form of scam.
 
-### Gas
-#### Transactions gas price vs time
+### 4. Gas
+#### 4.1. Transactions gas price vs time
 In `gas.py`, the average price of gas is calculated for each month by: total sum of gas prices / total number of transactions.
+
 __*Results:*__
 
 ![transaction gas price vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/Gas_Time.png)
 * The average price of gas has generally decreased with peaks during the first few months of each year.
 
-#### Contract gas vs time
+#### 4.2. Contract gas vs time
 In `gas.py`, the same approach for transactions is taken for smart contracts as well, with one alteration: in order to make sure a block represents a smart contract, it needs to be joined with the `contracts` dataset. As the block `id` is unique and present in both datasets, it is used as the joining key.
+
 __*Results:*__
 
 ![contract gas vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/contract_gas.png)
 * Contracts have been requiring more gas since the start of Ethereum, and it appears that the needed gas has reached a somewhat steady state.
 
-#### Contract complexity vs time
+#### 4.3. Contract complexity vs time
 The complexity of a transaction is reflected in its `difficulty` level, which is available in the `blocks` dataset.
+
 __*Results:*__
 
 ![contract complexity vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/complexity_time.png)
@@ -126,17 +135,20 @@ __*Results:*__
         corr(diff, gas) = 0.9385
 * With higher complexity, more gas would be required, so the most popular services might have been mining complex contracts.
 
-### Graph Analysis
-#### Triangle count
+### 5. Graph Analysis
+#### 5.1. Triangle count
 The target dataset for this part of the analysis is the `transaction` dataset. 
 To find all the nodes in the dataset (to addresses and from addresses), the to and from addresses are concatenated using the `union()` method. Then, to avoid repetition of nodes, the `distinct()` method is called on the `vertices` RDD. Next, the RDDs are converted to dataframes (with the correct formats described in `e_f(x)` and `v_f(x)`) and the graph is built using these two dataframes. Finally to find the triangles, a motif is called on the graph, searching for all sets of 3 nodes that form a triangle: a-->b, b-->c, c-->a.
+
 __*Results:*__
+
 The resulting file is too large to include here.
 
-#### Scammer wallets
+#### 5.2. Scammer wallets
 In `scammers_graph.py`, the general premise is that the addresses where scammers are accumulating their stolen cryptocurrency, has a lot more inDegrees than outDegrees, and that there are fairly many inDegrees. These assumptions are used in the custom function `is_scammer()`.
 The inDegrees and outDegrees are calculated for all of the nodes and converted into RDDs to allow RDD transformations. To calculate the ratio of outDegrees to inDegrees for each address, the inDegrees and outDegrees RDDs are joined with the address as the join key.
 Then, the joined RDD is filtered using `is_scammer()` to see which addresses meet the conditions stated above. Lastly, the resulting RDD from the previous stage is joined with the scammers RDD to filter out the addresses that were not recognized as scammers to yield the addresses used by scammers to accumulate stolen Ether.
+
 __*Results:*__
 
 The results can be accessed via [scammers.txt](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/scammers.txt).
@@ -146,4 +158,3 @@ wallet | inDegrees | outDegrees
 0x1e3c07ce10973fcaebc81468af1d3f390d2a4c71 | 165 | 15
 0x69f8e87518129498da751f26ea2309db05e7270b | 360 | 29
 0x40949225c4a1745a9946f6aaf763241c082cb9ac | 454 | 22
-
