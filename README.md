@@ -59,8 +59,11 @@ Also, a set of identified scams run on the Ethereum network were collected using
 ```
 ## Analysis
 ### Total number of transactions
+In `number_of_transactions.py`the total number of transactions are aggregated for each month included in the dataset.
+![number of transactions vs time]()
 
 ### Top 10 addresses
+In `top10_addresses.py` the 
 
 ### Scams
 
