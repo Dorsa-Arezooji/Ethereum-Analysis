@@ -1,5 +1,6 @@
 # Etherium-Analysis
 Analysis of Etherum contracts, transactions, gas, scams and scammers' graph using spark and graphframes
+[1. Total number of transactions](https://github.com/Dorsa-Arezooji/Etherium-Analysis#1. Total number of transactions)
 
 ## Dataset
 The dataset was collected using the dumps uploaded to a repository on [BigQuery](https://bigquery.cloud.google.com/dataset/bigquery-public-data:crypto_ethereum?pli=1). A subset of this data , including contracts and transactions, was then uploaded to HDFS at `/data/ethereum`.
@@ -131,14 +132,15 @@ __*Results:*__
 ![contract complexity vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/complexity_time.png)
 * Contracts have become more complicated with peaks in late 2017 and 2018, followed by a general decrease.
 
-* The required gas for a contract apears to be strongly correlated with the contract's complexity (difficulty): 
-        corr(diff, gas) = 0.9385
+* The required gas for a contract apears to be strongly correlated with the contract's complexity (difficulty):
+
+corr(diff, gas) = 0.9385
 * With higher complexity, more gas would be required, so the most popular services might have been mining complex contracts.
 
 ### 5. Graph Analysis
 #### 5.1. Triangle count
 The target dataset for this part of the analysis is the `transaction` dataset. 
-To find all the nodes in the dataset (to addresses and from addresses), the to and from addresses are concatenated using the `union()` method. Then, to avoid repetition of nodes, the `distinct()` method is called on the `vertices` RDD. Next, the RDDs are converted to dataframes (with the correct formats described in `e_f(x)` and `v_f(x)`) and the graph is built using these two dataframes. Finally to find the triangles, a motif is called on the graph, searching for all sets of 3 nodes that form a triangle: a-->b, b-->c, c-->a.
+To find all the nodes in the dataset (to addresses and from addresses), the to and from addresses are concatenated using the `union()` method. Then, to avoid repetition of nodes, the `distinct()` method is called on the `vertices` RDD. Next, the RDDs are converted to dataframes (with the correct formats described in `e_f()` and `v_f()`) and the graph is built using these two dataframes. Finally to find the triangles, a motif is called on the graph, searching for all sets of 3 nodes that form a triangle: a-->b, b-->c, c-->a.
 
 __*Results:*__
 
