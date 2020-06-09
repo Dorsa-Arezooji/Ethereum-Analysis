@@ -1,6 +1,23 @@
 # Etherium-Analysis
 Analysis of Etherum contracts, transactions, gas, scams and scammers' graph using spark and graphframes
-[1. Total number of transactions](https://github.com/Dorsa-Arezooji/Etherium-Analysis#1. Total number of transactions)
+
+* [Total number of transactions](https://github.com/Dorsa-Arezooji/Etherium-Analysis#1-total-number-of-transactions)
+
+* [Top 10 most popular services](https://github.com/Dorsa-Arezooji/Etherium-Analysis#2-top-10-most-popular-services)
+
+* [Most lucritive forms of scam](https://github.com/Dorsa-Arezooji/Etherium-Analysis#31-most-lucritive-forms-of-scams)
+
+* [How different scams changed with time](https://github.com/Dorsa-Arezooji/Etherium-Analysis#32-how-different-scams-changed-with-time)
+
+* [Transactions gas price vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis#41-transactions-gas-price-vs-time)
+
+* [Contract gas vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis#42-contract-gas-vs-time)
+
+* [Contract complexity vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis#43-contract-complexity-vs-time)
+
+* [Triangle count](https://github.com/Dorsa-Arezooji/Etherium-Analysis#51-triangle-count)
+
+* [Scammer wallets usesd for accumulating Ether](https://github.com/Dorsa-Arezooji/Etherium-Analysis#52-scammer-wallets)
 
 ## Dataset
 The dataset was collected using the dumps uploaded to a repository on [BigQuery](https://bigquery.cloud.google.com/dataset/bigquery-public-data:crypto_ethereum?pli=1). A subset of this data , including contracts and transactions, was then uploaded to HDFS at `/data/ethereum`.
