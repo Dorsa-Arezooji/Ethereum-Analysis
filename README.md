@@ -1,4 +1,4 @@
-# Etherium-Analysis
+# Ethereum-Analysis
 Analysis of Etherum contracts, transactions, gas, scams and scammers' graph using spark and graphframes
 
 * [Total number of transactions](https://github.com/Dorsa-Arezooji/Etherium-Analysis#1-total-number-of-transactions)
