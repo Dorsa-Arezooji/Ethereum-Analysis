@@ -58,16 +58,15 @@ Also, a set of identified scams run on the Ethereum network were collected using
 },
 ```
 ## Analysis & Results
+
 ### Total number of transactions
 In `number_of_transactions.py`the total number of transactions are aggregated for each month included in the dataset.
-
 __*Results:*__
 
 ![number of transactions vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/transactions_time.png)
 
 ### Top 10 most popular services
 In `top10_addresses.py` the top 10 services with the highest amounts of Ethereum received for smart contracts are yielded.
-
 __*Results:*__
 rank | address | total Ether received
 -----|---------|------------
@@ -85,7 +84,6 @@ rank | address | total Ether received
 ### Scams
 #### Most lucritive forms of scams
 In `scams.py`, the types of scam making the most Ether are yielded.
-
 __*Results:*__
 rank | most lucrative scam (category) | total Ether profited
 -----|--------------------------------|------------
@@ -94,8 +92,7 @@ rank | most lucrative scam (category) | total Ether profited
 3 | Fake ICO | 1.35645756688963e+21
 
 #### How different scams changed with time
-In `scams.py` the total sum of Ether made of off each scam category is calculated for each month included in the dataset.
-
+In `scams.py` the total sum of Ether made off of each scam category is calculated for each month included in the dataset.
 __*Results:*__
 
 ![scams vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/scams_time.png)
@@ -106,22 +103,20 @@ __*Results:*__
 ### Gas
 #### Transactions gas price vs time
 In `gas.py`, the average price of gas is calculated for each month by: total sum of gas prices / total number of transactions.
-
 __*Results:*__
 
 ![transaction gas price vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/Gas_Time.png)
 * The average price of gas has generally decreased with peaks during the first few months of each year.
 
 #### Contract gas vs time
-In `gas.py`,
-
+In `gas.py`, the same approach for transactions is taken for smart contracts as well, with one alteration: in order to make sure a block represents a smart contract, it needs to be joined with the `contracts` dataset. As the block `id` is unique and present in both datasets, it is used as the joining key.
 __*Results:*__
 
-![contract gas vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/contrct_gas.png)
+![contract gas vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/contract_gas.png)
 * Contracts have been requiring more gas since the start of Ethereum, and it appears that the needed gas has reached a somewhat steady state.
 
 #### Contract complexity vs time
-
+The complexity of a transaction is reflected in its `difficulty` level, which is available in the `blocks` dataset.
 __*Results:*__
 
 ![contract complexity vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/complexity_time.png)
@@ -129,9 +124,26 @@ __*Results:*__
 
 * The required gas for a contract apears to be strongly correlated with the contract's complexity (difficulty): 
         corr(diff, gas) = 0.9385
+* With higher complexity, more gas would be required, so the most popular services might have been mining complex contracts.
 
 ### Graph Analysis
+#### Triangle count
+The target dataset for this part of the analysis is the `transaction` dataset. 
+To find all the nodes in the dataset (to addresses and from addresses), the to and from addresses are concatenated using the `union()` method. Then, to avoid repetition of nodes, the `distinct()` method is called on the `vertices` RDD. Next, the RDDs are converted to dataframes (with the correct formats described in `e_f(x)` and `v_f(x)`) and the graph is built using these two dataframes. Finally to find the triangles, a motif is called on the graph, searching for all sets of 3 nodes that form a triangle: a-->b, b-->c, c-->a.
+__*Results:*__
+The resulting file is too large to include here.
 
 #### Scammer wallets
+In `scammers_graph.py`, the general premise is that the addresses where scammers are accumulating their stolen cryptocurrency, has a lot more inDegrees than outDegrees, and that there are fairly many inDegrees. These assumptions are used in the custom function `is_scammer()`.
+The inDegrees and outDegrees are calculated for all of the nodes and converted into RDDs to allow RDD transformations. To calculate the ratio of outDegrees to inDegrees for each address, the inDegrees and outDegrees RDDs are joined with the address as the join key.
+Then, the joined RDD is filtered using `is_scammer()` to see which addresses meet the conditions stated above. Lastly, the resulting RDD from the previous stage is joined with the scammers RDD to filter out the addresses that were not recognized as scammers to yield the addresses used by scammers to accumulate stolen Ether.
+__*Results:*__
 
-#### Triangle count
+The results can be accessed via [scammers.txt](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/scammers.txt).
+A subset of results for refference:
+wallet | inDegrees | outDegrees
+-------|-----------|-----------
+0x1e3c07ce10973fcaebc81468af1d3f390d2a4c71 | 165 | 15
+0x69f8e87518129498da751f26ea2309db05e7270b | 360 | 29
+0x40949225c4a1745a9946f6aaf763241c082cb9ac | 454 | 22
+(u'0x40949225c4a1745a9946f6aaf763241c082cb9ac', ((454, 22), 1))
