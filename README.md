@@ -62,7 +62,7 @@ Also, a set of identified scams run on the Ethereum network were collected using
 In `number_of_transactions.py`the total number of transactions are aggregated for each month included in the dataset.
 
 __*Results:*__
-![number of transactions vs time]()
+![number of transactions vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/transactions_time.png)
 
 ### Top 10 most popular services
 In `top10_addresses.py` the top 10 services with the highest amounts of Ethereum received for smart contracts are yielded.
@@ -96,7 +96,7 @@ rank | most lucrative scam (category) | total Ether profited
 In `scams.py` the total sum of Ether made of off each scam category is calculated for each month included in the dataset.
 
 __*Results:*__
-![scams vs time]()
+![scams vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/transactions_time.png)
 * In July of 2017, phishing attacks were the most profitable form of scam.
 * In September of 2017, fake ICO was the most profitable form of scam.
 * In September of 2018, scamming attacks were the most profitable form of scam.
