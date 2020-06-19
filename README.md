@@ -49,7 +49,6 @@ Also, a set of identified scams run on the Ethereum network were collected using
 |0x9a78bba29a2633b...|   false|    false|     8623545|2019-09-26 08:50:...|
 |0x85aa7fbc06e3f95...|   false|    false|     8621323|2019-09-26 00:29:...|
 |0xc3649f1e59705f2...|   false|    false|     8621325|2019-09-26 00:29:...|
-
 ```
 * __Scams__
 ```
@@ -172,6 +171,7 @@ __*Results:*__
 
 The results can be accessed via [scammers.txt](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/scammers.txt).
 A subset of results for refference:
+
 wallet | inDegrees | outDegrees
 -------|-----------|-----------
 0x1e3c07ce10973fcaebc81468af1d3f390d2a4c71 | 165 | 15
