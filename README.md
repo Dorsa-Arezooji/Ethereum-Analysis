@@ -81,7 +81,6 @@ In `number_of_transactions.py`the total number of transactions are aggregated fo
 
 __*Results:*__
 
-![number of transactions vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/transactions_time.png)
 <img src="results/transactions_time.png" width="800" />
 
 ### 2. Top 10 most popular services
@@ -119,7 +118,7 @@ In `scams.py` the total sum of Ether made off of each scam category is calculate
 
 __*Results:*__
 
-![scams vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/scams_time.png)
+<img src="results/scams_time.png" width="800" />
 * In July of 2017, phishing attacks were the most profitable form of scam.
 * In September of 2017, fake ICO was the most profitable form of scam.
 * In September of 2018, scamming attacks were the most profitable form of scam.
@@ -130,7 +129,7 @@ In `gas.py`, the average price of gas is calculated for each month by: total sum
 
 __*Results:*__
 
-![transaction gas price vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/Gas_Time.png)
+<img src="results/Gas_Time.png" width="800" />
 * The average price of gas has generally decreased with peaks during the first few months of each year.
 
 #### 4.2. Contract gas vs time
@@ -138,7 +137,7 @@ In `gas.py`, the same approach for transactions is taken for smart contracts as 
 
 __*Results:*__
 
-![contract gas vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/contract_gas.png)
+<img src="results/contract_gas.png" width="800" />
 * Contracts have been requiring more gas since the start of Ethereum, and it appears that the needed gas has reached a somewhat steady state.
 
 #### 4.3. Contract complexity vs time
@@ -146,7 +145,7 @@ The complexity of a transaction is reflected in its `difficulty` level, which is
 
 __*Results:*__
 
-![contract complexity vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/complexity_time.png)
+<img src="results/complexity_time.png" width="800" />
 * Contracts have become more complicated with peaks in late 2017 and 2018, followed by a general decrease.
 
 * The required gas for a contract apears to be strongly correlated with the contract's complexity (difficulty):
