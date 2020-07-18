@@ -82,6 +82,7 @@ In `number_of_transactions.py`the total number of transactions are aggregated fo
 __*Results:*__
 
 ![number of transactions vs time](https://github.com/Dorsa-Arezooji/Etherium-Analysis/blob/master/results/transactions_time.png)
+<img src="results/transactions_time.png" width="800" />
 
 ### 2. Top 10 most popular services
 In `top10_addresses.py` the top 10 services with the highest amounts of Ethereum received for smart contracts are yielded.
